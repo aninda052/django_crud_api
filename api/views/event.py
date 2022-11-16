@@ -19,7 +19,7 @@ class EventApiView(APIView):
         event_serializer = self.serializer_class(data=request.data)
         if event_serializer.is_valid():
             event_serializer.save()
-            return Response({'detail': 'Event create Successfully'}, status=status.HTTP_200_OK)
+            return Response({'massage': 'Event create Successfully'}, status=status.HTTP_200_OK)
         else:
             return Response(event_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -28,6 +28,14 @@ class EventApiView(APIView):
         if event:
             event_serializer = self.serializer_class(event, many=False)
             return Response(event_serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({"event_not_found" : "Provide a valid event Id"}, status=status.HTTP_404_NOT_FOUND)
+
+    def delete(self, request, id):
+        event = self.model.objects.filter(id = id).first()
+        if event:
+            event.delete()
+            return Response({'massage': 'Event delete Successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({"event_not_found" : "Provide a valid event Id"}, status=status.HTTP_404_NOT_FOUND)
 
