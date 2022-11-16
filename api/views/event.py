@@ -32,5 +32,11 @@ class EventApiView(APIView):
             return Response({"event_not_found" : "Provide a valid event Id"}, status=status.HTTP_404_NOT_FOUND)
 
 
-
+class EventLIstApiView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    model = Event
+    serializer_class = EventSerializer
+    pagination_class = CustomPagination
+    def get_queryset(self):
+        return self.model.objects.all().order_by('id')
 
