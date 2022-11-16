@@ -11,4 +11,5 @@ urlpatterns = [
     path('login/', MyTokenObtainPairView.as_view(), name='login-api'),
     path('registration/', RegistrationApiView.as_view(), name='registration-api'),
     path('events/', EventApiView.as_view(), name='event-create-api'),
+    path('events/<int:id>', EventApiView.as_view(), name='event-get-api'),
 ]
