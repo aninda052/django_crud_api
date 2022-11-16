@@ -13,5 +13,6 @@ urlpatterns = [
     path('events/', EventApiView.as_view(), name='event-create-api'),
     path('events/<int:id>', EventApiView.as_view(), name='event-get-api'),
     path('events/<int:id>', EventApiView.as_view(), name='event-delete-api'),
+    path('events/<int:id>', EventApiView.as_view(), name='event-update-api'),
     path('events', EventLIstApiView.as_view(), name='event-list-api'),
 ]
