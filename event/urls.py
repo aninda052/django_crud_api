@@ -5,5 +5,5 @@ from event.views import EventView
 app_name = 'event'
 
 urlpatterns = [
-    path('', EventView.as_view(), name='events-url'),
+    path('event/', EventView.as_view(), name='events-url'),
 ]

@@ -7,7 +7,7 @@ from  authentication.models import User
 class RegistrationApiView(APIView):
 
     def post(self, request):
-        data = request.POST
+        data = request.data
         username = data.get("username")
         password = data.get("password")
         user, created = User.get_or_create(username=username, password=password)
