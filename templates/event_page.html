@@ -1,0 +1,69 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="card o-hidden border-0 shadow-lg my-5" ng-controller="eventctrl">
+                    <div class="card-body p-0" ng-show="showEventList">
+                        <div class="row">
+
+                            <div class="col-lg-6 d-none d-lg-block ">
+                                Event
+                                <br>
+                                List Of Events! - <span><a ng-click="eventCreatePage()" style="cursor: pointer;color: #2e59d9">Create</a></span></p>
+                            </div>
+
+
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0" ng-show="showEventCreateUpdate">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block ">
+                                Event
+                                <br>
+                                List Of Events! - <span><a ng-click="eventListPage()" style="cursor: pointer;color: #2e59d9">Back</a></span></p>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <form name="eventCreatform" >
+
+                                            <div class="form-group">
+                                                <span>Name</span>
+                                                <input type="text" name="username" ng-model="eventName"
+                                                       placeholder="Event Name" autofocus required>
+                                            </div>
+                                            <div class="form-group">
+                                                <span>Location</span>
+                                                <input type="text" name="location" ng-model="location"
+                                                       placeholder="Location" required >
+                                            </div>
+                                            <div class="form-group">
+                                                <span>Date</span>
+                                                <input type="datetime-local" name="date" ng-model="date" required >
+
+                                            </div>
+                                            <button class="btn btn-primary btn-user btn-block"  ng-click="createEvent()" >Create</button>
+
+
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

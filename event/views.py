@@ -7,4 +7,4 @@ from django.views import View
 
 class EventView( View):
     def get(self, request):
-        return render(request, 'index.html')
+        return render(request, 'event_page.html')
