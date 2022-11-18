@@ -84,13 +84,16 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.createEvent = function (){
         $http.post(
-            "http://127.0.0.1:8000/api/events/",{
-                "headers":{
-                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                },
+            "http://127.0.0.1:8000/api/events/",
+            {
                 "name":$scope.eventName,
                 "location":$scope.location,
                 "date":$scope.date,
+            },
+            {
+                "headers": {
+                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
+                },
             }
 
         ).then(function (data){
@@ -105,10 +108,11 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.getEvent = function (){
         $http.get(
-            "http://127.0.0.1:8000/api/events/2",{
-                "headers":{
+            "http://127.0.0.1:8000/api/events/2",
+            {
+                "headers": {
                     "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                }
+                },
             }
 
         ).then(function (data){
@@ -123,10 +127,11 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.deleteEvent = function (){
         $http.delete(
-            "http://127.0.0.1:8000/api/events/2",{
-                "headers":{
+            "http://127.0.0.1:8000/api/events/2",
+            {
+                "headers": {
                     "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                }
+                },
             }
 
         ).then(function (data){
@@ -141,13 +146,16 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.updateEvent = function (){
         $http.put(
-            "http://127.0.0.1:8000/api/events/3",{
-                "headers":{
-                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                },
-                "name":$scope.name,
+            "http://127.0.0.1:8000/api/events/3",
+            {
+                "name":$scope.eventName,
                 "location":$scope.location,
                 "date":$scope.date,
+            },
+            {
+                "headers": {
+                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
+                },
             }
 
         ).then(function (data){
@@ -162,12 +170,12 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.eventlist = function (){
         $http.get(
-            "http://127.0.0.1:8000/api/events?number=1&size=2",{
-                "headers":{
+            "http://127.0.0.1:8000/api/events?number=1&size=2",
+            {
+                "headers": {
                     "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                }
+                },
             }
-
         ).then(function (data){
             console.log(data.data)
         }).catch(function (error){
