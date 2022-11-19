@@ -39,6 +39,7 @@ app.controller("authtrl",  function ($scope, $http){
             location="event"
         }).catch(function (error){
             alert(error.data.detail)
+            return
         })
     };
 
@@ -53,6 +54,7 @@ app.controller("authtrl",  function ($scope, $http){
             alert(data.data.detail)
         }).catch(function (error){
             alert(error.data.detail)
+            return
         })
     };
 
@@ -70,14 +72,17 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.showEventList = true;
     $scope.showEventCreateUpdate = false;
+    getEventList()
 
     $scope.eventCreatePage = function (){
         $scope.showEventCreateUpdate =  true;
         $scope.showEventList = false;
+
     };
     $scope.eventListPage = function (){
         $scope.showEventList =  true;
         $scope.showEventCreateUpdate = false;
+        getEventList()
     };
 
 
@@ -99,9 +104,9 @@ app.controller("eventctrl",  function ($scope, $http){
         ).then(function (data){
             console.log(data.data)
         }).catch(function (error){
-            if (error.status==401){
-                return;
-            }
+            // if (error.status==401){
+            //
+            // }
             alert(error.data.detail)
         })
     };
@@ -118,9 +123,9 @@ app.controller("eventctrl",  function ($scope, $http){
         ).then(function (data){
             console.log(data.data)
         }).catch(function (error){
-            if (error.status==401){
-                $scope.loginpage()
-            }
+            // if (error.status==401){
+            //
+            // }
             alert(error.data.detail)
         })
     };
@@ -136,10 +141,10 @@ app.controller("eventctrl",  function ($scope, $http){
 
         ).then(function (data){
             console.log(data.data)
-        }).catch(function (error){
-            if (error.status==401){
-                $scope.loginpage()
-            }
+        }).catch(function (error) {
+            // if (error.status==401){
+            //
+            // }
             alert(error.data.detail)
         })
     };
@@ -161,28 +166,39 @@ app.controller("eventctrl",  function ($scope, $http){
         ).then(function (data){
             console.log(data.data)
         }).catch(function (error){
-            if (error.status==401){
-                $scope.loginpage()
-            }
+            // if (error.status==401){
+            //
+            // }
             alert(error.data.detail)
         })
     };
 
-    $scope.eventlist = function (){
+    $scope.eventlist = getEventList
+
+    function getEventList(){
+
         $http.get(
-            "http://127.0.0.1:8000/api/events?number=1&size=2",
+            "http://127.0.0.1:8000/api/events?number=1&size=5",
             {
                 "headers": {
                     "Authorization": 'Bearer ' + localStorage.getItem('token'),
                 },
             }
         ).then(function (data){
-            console.log(data.data)
+            $scope.events = data.data.results
+            $('#dtBasicExample').DataTable();
+
+
         }).catch(function (error){
-            if (error.status==401){
-                $scope.loginpage()
-            }
+            // if (error.status==401){
+            //
+            // }
             alert(error.data.detail)
         })
     };
 })
+
+app.controller('myCtrl', function($scope) {
+  $scope.carname = "Volvo";
+});
+
