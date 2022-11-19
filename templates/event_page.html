@@ -28,13 +28,9 @@
                                         <td>{{ "{{ event.location }" }}} </td>
                                         <td>{{ "{{ event.date }" }}} </td>
                                         <td class="d-flex">
-                                            <span><a  style="margin: .25rem;">Edit</a></span></p>
+                                            <span><a id="{{ "{{ event.id }" }}}" ng-click="showUpdateEvent($index)" style="margin: .25rem;">Edit</a></span></p>
                                             <span><a id="{{ "{{ event.id }" }}}" ng-click="deleteEvent($event)" style="margin: .25rem">Delete</a></span></p>
                                         </td>
-
-                                    </tr>
-
-                                </tbody>
 
                             </table>
 
@@ -54,7 +50,7 @@
                             <div class="col-lg-6 d-none d-lg-block ">
                                 Event
                                 <br>
-                                List Of Events! - <span><a ng-click="eventListPage()">Back</a></span></p>
+                                {{ "{{ eventCreateOrUpdate }" }}} an Event! - <span><a ng-click="eventListPage()">Back</a></span></p>
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
@@ -63,7 +59,7 @@
 
                                             <div class="form-group">
                                                 <span>Name</span>
-                                                <input type="text" name="username" ng-model="eventName"
+                                                <input type="text" name="eventName" ng-model="eventName"
                                                        placeholder="Event Name" autofocus required>
                                             </div>
                                             <div class="form-group">
@@ -76,7 +72,11 @@
                                                 <input type="datetime-local" name="date" ng-model="date" required >
 
                                             </div>
-                                            <button class="btn btn-primary btn-user btn-block"  ng-click="createEvent()" >Create</button>
+                                            <input type="hidden" name="eventIndex" ng-model="eventIndex" >
+                                            <input type="hidden" name="eventId" ng-model="eventId" >
+
+                                            <button ng-show="showCreateEventBtn" class="btn btn-primary btn-user btn-block"  ng-click="createEvent()" >Create</button>
+                                            <button ng-show="showUpdateEventBtn" class="btn btn-primary btn-user btn-block"  ng-click="updateEvent()" >Update</button>
 
 
                                         </form>

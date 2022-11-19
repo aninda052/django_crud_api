@@ -75,6 +75,12 @@ app.controller("eventctrl",  function ($scope, $http){
     getEventList()
 
     $scope.eventCreatePage = function (){
+        $scope.eventName = null;
+        $scope.location = null;
+        $scope.date = null;
+        $scope.eventCreateOrUpdate = "Create";
+        $scope.showCreateEventBtn = true;
+        $scope.showUpdateEventBtn = false;
         $scope.showEventCreateUpdate =  true;
         $scope.showEventList = false;
 
@@ -82,10 +88,11 @@ app.controller("eventctrl",  function ($scope, $http){
     $scope.eventListPage = function (){
         $scope.showEventList =  true;
         $scope.showEventCreateUpdate = false;
-        getEventList()
+        // getEventList()
     };
 
 
+    $scope.eventlist = getEventList
 
     $scope.createEvent = function (){
         $http.post(
@@ -102,7 +109,8 @@ app.controller("eventctrl",  function ($scope, $http){
             }
 
         ).then(function (data){
-            console.log(data.data)
+            $scope.eventListPage()
+            alert(data.data.massage)
         }).catch(function (error){
             // if (error.status==401){
             //
@@ -149,31 +157,19 @@ app.controller("eventctrl",  function ($scope, $http){
         })
     };
 
-    $scope.updateEvent = function (){
-        $http.put(
-            `http://127.0.0.1:8000/api/events/1`,
-            {
-                "name":$scope.eventName,
-                "location":$scope.location,
-                "date":$scope.date,
-            },
-            {
-                "headers": {
-                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
-                },
-            }
+    $scope.showUpdateEvent = function (index){
+        $scope.eventCreatePage()
+        $scope.eventName = $scope.events[index].name;
+        $scope.location = $scope.events[index].location;
+        $scope.date = new Date(Date.parse($scope.events[index].date));
+        $scope.eventId = $scope.events[index].id;
+        $scope.eventIndex = index;
+        $scope.eventCreateOrUpdate = "Update";
+        $scope.showCreateEventBtn = false;
+        $scope.showUpdateEventBtn = true;
+    }
 
-        ).then(function (data){
-            console.log(data.data)
-        }).catch(function (error){
-            // if (error.status==401){
-            //
-            // }
-            alert(error.data.detail)
-        })
-    };
 
-    $scope.eventlist = getEventList
 
     function getEventList(){
 
@@ -186,7 +182,7 @@ app.controller("eventctrl",  function ($scope, $http){
             }
         ).then(function (data){
             $scope.events = data.data.results
-            $('#dtBasicExample').DataTable();
+            // $('#dtBasicExample').DataTable();
 
 
         }).catch(function (error){
@@ -196,9 +192,31 @@ app.controller("eventctrl",  function ($scope, $http){
             alert(error.data.detail)
         })
     };
+
+    $scope.updateEvent =  function (){
+        $http.put(
+            `http://127.0.0.1:8000/api/events/${$scope.eventId}`,
+            {
+                "name":$scope.eventName,
+                "location":$scope.location,
+                "date":$scope.date,
+            },
+            {
+                "headers": {
+                    "Authorization": 'Bearer ' + localStorage.getItem('token'),
+                },
+            }
+
+        ).then(function (data){
+            $scope.eventListPage()
+            alert(data.data.massage)
+        }).catch(function (error){
+            // if (error.status==401){
+            //
+            // }
+            alert(error.data.detail)
+        })
+    };
 })
 
-app.controller('myCtrl', function($scope) {
-  $scope.carname = "Volvo";
-});
 
