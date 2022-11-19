@@ -130,9 +130,9 @@ app.controller("eventctrl",  function ($scope, $http){
         })
     };
 
-    $scope.deleteEvent = function (){
+    $scope.deleteEvent = function (event){
         $http.delete(
-            "http://127.0.0.1:8000/api/events/2",
+            `http://127.0.0.1:8000/api/events/${event.target.id}`,
             {
                 "headers": {
                     "Authorization": 'Bearer ' + localStorage.getItem('token'),
@@ -140,7 +140,7 @@ app.controller("eventctrl",  function ($scope, $http){
             }
 
         ).then(function (data){
-            console.log(data.data)
+            location.reload();
         }).catch(function (error) {
             // if (error.status==401){
             //
@@ -151,7 +151,7 @@ app.controller("eventctrl",  function ($scope, $http){
 
     $scope.updateEvent = function (){
         $http.put(
-            "http://127.0.0.1:8000/api/events/3",
+            `http://127.0.0.1:8000/api/events/1`,
             {
                 "name":$scope.eventName,
                 "location":$scope.location,
