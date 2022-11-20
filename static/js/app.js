@@ -39,7 +39,6 @@ app.controller("authctrl",  function ($scope, $http, $window){
             location="event"
         }).catch(function (error){
             alert(error.data.detail)
-            return
         })
     };
 
@@ -54,7 +53,6 @@ app.controller("authctrl",  function ($scope, $http, $window){
             alert(data.data.detail)
         }).catch(function (error){
             alert(error.data.detail)
-            return
         })
     };
 
