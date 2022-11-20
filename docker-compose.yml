@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+
+
+
+  django_crud_api:
+    build: .
+    volumes:
+      - .:/django_crud_api
+    container_name: django_crud_api
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13-alpine3.15
+    volumes:
+      - data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+      - POSTGRES_HOST=localhost
+    container_name: postgres_db
+
+
+volumes:
+  data:
+  redis_data:
+
+

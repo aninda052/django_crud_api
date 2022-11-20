@@ -117,6 +117,7 @@ celerybeat.pid
 migrations
 .env
 .venv
+static/
 env/
 venv/
 ENV/
