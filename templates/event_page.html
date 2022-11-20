@@ -2,6 +2,17 @@
 {% load static %}
 {% block content %}
     <div class="container">
+
+    <div ng-controller="authctrl">
+        <p >
+            <span>
+                <a ng-click="logout()">
+                    <h4 style="float: right">Logout</h4>
+                </a>
+            </span>
+        </p>
+    </div>
+
         <div class="row justify-content-center">
             <div class="col-xl-10 col-lg-12 col-md-9">
                 <div class="card o-hidden border-0 shadow-lg my-5" ng-controller="eventctrl">

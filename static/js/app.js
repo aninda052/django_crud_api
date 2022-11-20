@@ -1,6 +1,6 @@
 app = angular.module("demoapp",  ['ui.bootstrap']);
 
-app.controller("authtrl",  function ($scope, $http){
+app.controller("authctrl",  function ($scope, $http, $window){
 
     $("#submitbtn").html("Login");
     $scope.showsignup = false;
@@ -61,14 +61,14 @@ app.controller("authtrl",  function ($scope, $http){
     $scope.logout = function (){
         localStorage.removeItem('token')
         localStorage.removeItem('refresh')
+         $window.location.href = $window.location.origin
     };
 
 
 })
 
 
-app.controller("eventctrl",  function ($scope, $http){
-
+app.controller("eventctrl",  function ($scope, $http, $window){
 
     $scope.showEventList = true;
     $scope.showEventCreateUpdate = false;
