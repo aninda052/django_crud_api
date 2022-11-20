@@ -116,10 +116,7 @@ app.controller("eventctrl",  function ($scope, $http, $window){
             $scope.eventListPage()
             alert(data.data.massage)
         }).catch(function (error){
-            // if (error.status==401){
-            //
-            // }
-            alert(error.data.detail)
+            handleApiError(error)
         })
     };
 
@@ -154,10 +151,7 @@ app.controller("eventctrl",  function ($scope, $http, $window){
         ).then(function (data){
             location.reload();
         }).catch(function (error) {
-            // if (error.status==401){
-            //
-            // }
-            alert(error.data.detail)
+            handleApiError(error)
         })
     };
 
@@ -191,10 +185,7 @@ app.controller("eventctrl",  function ($scope, $http, $window){
                 $scope.eventListPage()
                 alert(data.data.massage)
             }).catch(function (error){
-                // if (error.status==401){
-                //
-                // }
-                alert(error.data.detail)
+                handleApiError(error)
             })
         };
 
@@ -219,12 +210,17 @@ app.controller("eventctrl",  function ($scope, $http, $window){
 
 
         }).catch(function (error){
-            // if (error.status==401){
-            //
-            // }
-            alert(error.data.detail)
+            handleApiError(error)
         })
     };
+
+    function handleApiError(error){
+        alert(error.data.detail)
+        if (error.status==401){
+            $window.location.href = $window.location.origin
+        }
+
+    }
 
   });
 
