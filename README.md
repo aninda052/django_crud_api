@@ -11,6 +11,22 @@ https://github.com/aninda052/django_crud_api.git
 cd django_crud_api
 ```
 
+#### creating `.env` file
+
+Create a `.env` file for your environment variable.
+
+```angular2html
+ touch .env
+```
+
+You find the details of all the variables in `.env.example` file.
+For running the project just copy billow dummy information and past it to your .env file and save it.
+
+```angular2html
+DEBUG=True
+SECRET_KEY=someRandomSecretKey
+```
+
 You can run the project in 2 way
 
 - ###  Using `runserver`  command
